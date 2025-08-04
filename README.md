@@ -1,220 +1,193 @@
 
-# Floating AI Chatbot Component
+# React Floatbot
+![npm](https://img.shields.io/npm/v/react-floatbot)   ![npm downloads](https://img.shields.io/npm/dt/react-floatbot)   ![license](https://img.shields.io/npm/l/react-floatbot)
 
-A sleek, customizable, and easy-to-integrate React component for adding a floating AI-powered chatbot to your website. Built with React and powered by the Google Gemini API, it provides a modern, dark-themed interface that can be easily restyled to match your brand.
 
-![Chatbot Demo](https://placehold.co/600x400/1a1a1a/f5f5f5?text=Chatbot+UI+Preview)
+**react-floatbot,** a react floating AI chatbot component, a sleek, customizable, and easy-to-integrate React component for adding a floating AI-powered chatbot to your website. Built with React and free Google Gemini API, it provides a modern, dark-themed interface that can be easily restyled to match your brand. 
+![Chatbot Demo](https://shorturl.at/g7KWd)
 
----
+## Installation
 
-## 🚀 Use Cases
-
-This component is ideal for a variety of applications, including:
-
--   **AI Coding Assistant**: Help developers by answering programming questions, debugging code, and providing code snippets directly on your site.
--   **Customer Support**: Offer instant, 24/7 support to your users by answering frequently asked questions.
--   **Interactive Documentation**: Allow users to ask questions about your product or API directly from your documentation pages.
--   **Lead Generation**: Engage visitors and qualify leads by asking targeted questions.
--   **Personal Portfolio Bot**: Add a personal touch to your portfolio by letting visitors chat with an AI version of you.
-
----
-
-## ⚙️ Installation
-
-Follow these steps to get the chatbot up and running in your React project.
-
-### 1. Add Files to Your Project
-
-First, copy the following files into your project's `components` directory (or your preferred location):
-
--   `FloatingChatbot.tsx`
--   `FloatingChatbot.css`
-
-### 2. Install Dependencies
-
-This component requires a few peer dependencies. You can install them using npm or yarn:
+With Yarn:
 
 ```bash
-npm install react-markdown
+yarn add react-floatbot
+```
 
-or
+With npm:
 
-yarn add react-markdown
+```bash
+npm i react-floatbot
+```
 
-3. Set Up Environment Variables
-To securely use your Google Gemini API key, it's best to store it in an environment variable. Create a .env file in the root of your project and add your key:
+## Usage
 
-VITE_GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
 
-Note: If you are not using Vite, access your environment variables according to your project's setup (e.g., process.env.REACT_APP_GEMINI_API_KEY for Create React App).
+The chatbot is designed to work out-of-the-box with sensible defaults, but you can easily customize its appearance and behavior by passing props.
 
-4. Import and Use the Component
-Finally, import the component into any page or layout file and render it.
+At a minimum, you must provide the `apiKey` prop for the component to function.
 
-import FloatingChatbot from './components/FloatingChatbot';
+### Getting Your Gemini API Key 
+You can get a free Gemini API key from Google AI Studio. 
 
-function App() {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+1. Go to the [Google AI Studio](https://aistudio.google.com/apikey) website. 
+2. Click on **"Create API key in new project"**. 
+3. Your new API key will be generated for free. Copy it and add it to your project's environment variables.
 
-  return (
-    <div>
-      {/* Your other page content */}
-      <FloatingChatbot apiKey={apiKey} />
-    </div>
+### Example
+```jsx
+import React from "react";
+import FloatingChatbot from "react-floatbot";
+
+
+const App = () => {
+	<FloatingChatbot
+	      apiKey={ your_gemini_api_key }
+   	 />
   );
-}
+};
 
 export default App;
+```
 
-🎨 Customization (Props)
-You can customize the chatbot by passing various props. Here is a detailed list of all available options:
 
-Prop
+### Customization Example
 
-Type
+You can override the default settings by passing additional props. For a full list of options, refer to the **Customization (Props)** table below.
 
-Default
+```jsx
+	<FloatingChatbot
+	      apiKey={your_gemini_api_key }
+	      modelName="gemini-1.5-flash"
+	      initialMessage="Hi there! I'm your coding assistant. Ask me anything!"
+	      botName="Gemini Chat"
+	      position="bottom-right"
+	      theme={{
+			primaryColor: "#4F46E5",
+			userBubbleColor: "#E0F2FE",
+			botBubbleColor: "#F3F4F6",
+			backgroundColor: "#FFFFFF",
+	      }}
+	      width={350}
+	      height={500}
+	      headerText="Ask Gemini"
+	      placeholderText="Type your question here..."
+	      isOpenOnLoad={false}
+    />
+```
+### 📌 Customization (Props)
 
-Description
+| Prop              | Type                                                                 | Default                                                          | Description |
+|-------------------|----------------------------------------------------------------------|------------------------------------------------------------------|-------------|
+| `apiKey`          | `string`                                                             | _Required_                                                       | Your Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey). |
+| `modelName`       | `string`                                                             | `"gemini-1.5-flash"`                                             | The Gemini model to use. |
+| `initialMessage`  | `string`                                                             | `"Hello! How can I assist you with your code today?"`           | Message shown at the start of the conversation. |
+| `botName`         | `string`                                                             | `"AI Assistant"`                                                 | Display name of the bot shown in the header. |
+| `position`        | `"bottom-right"` \| `"bottom-left"` \| `"top-right"` \| `"top-left"` | `"bottom-right"`                                                 | Screen position where the chatbot appears. |
+| `theme`           | `{ primaryColor?, userBubbleColor?, botBubbleColor?, backgroundColor? }` | `{}`                                                             | Customize the colors of the chatbot. See [Theme Object](#-theme-object-theme) below. |
+| `width`           | `string` \| `number`                                                 | `undefined`                                                      | Set custom width of the chatbot popup. |
+| `height`          | `string` \| `number`                                                 | `undefined`                                                      | Set custom height of the chatbot popup. |
+| `headerText`      | `string`                                                             | `botName`                                                        | Custom text to display in the header. |
+| `placeholderText` | `string`                                                             | `"Ask me anything..."`                                           | Placeholder shown in the message input area. |
+| `isOpenOnLoad`    | `boolean`                                                            | `false`                                                          | Whether the chatbot should open by default on page load. |
 
-apiKey
+---
 
-string
+###  Theme Object (`theme`)
 
-Required
+You can customize the chatbot’s colors using the `theme` prop:
 
-Your Google Gemini API key.
+```ts
+interface ChatbotTheme {
+  primaryColor?: string;        // Accent color (used in header, buttons)
+  userBubbleColor?: string;     // Background color for user messages
+  botBubbleColor?: string;      // Background color for bot messages
+  backgroundColor?: string;     // Overall background of the chat window
+}
+```
+##  Developer & Contributor Guide
 
-modelName
+Want to contribute or publish updates to **react-floatbot**? Follow the steps below:
 
-string
+---
 
-"gemini-1.5-flash"
+### 🔧 Setup Locally
 
-The name of the Gemini model to use.
+1. Clone the repository:
 
-initialMessage
+```bash
+git clone https://github.com/your-username/react-floatbot.git
+cd react-floatbot
+```
 
-string
+2. Install dependencies:
 
-"Hello! How can I assist..."
+```bash
+npm install
+# or
+yarn
+```
 
-The first message the bot displays when it opens.
+---
 
-botName
 
-string
+---
 
-"AI Assistant"
 
-The name of the bot displayed in the header (used if headerText is not provided).
+### Development
 
-headerText
+Since this is a reusable React component library, development typically involves:
 
-string
+1. Making changes inside the `src/` folder.
+2. Rebuilding the library to reflect your changes:
 
-undefined
+```bash
+npm run rollup
+```
 
-Overrides botName to set a custom title in the header.
+> Tip: You can create a `demo/` or `example/` React app locally to test your component while developing.
+> You can also use tools like [Storybook](https://storybook.js.org/) or [VitePress](https://vitepress.dev/) for isolated component testing.
 
-placeholderText
+---
 
-string
+### Publishing to npm
 
-"Ask me anything..."
+> Only required if you're the maintainer.
 
-The placeholder text shown in the message input field.
+1. Ensure you're logged in to npm:
 
-position
+```bash
+npm login
+```
 
-'bottom-right' 'bottom-left' 'top-right' 'top-left'
+2. Bump the version in `package.json` (using [SemVer](https://semver.org/)):
 
-'bottom-right'
+```bash
+npm version patch
+```
 
-The position of the chatbot on the screen.
+3. Publish the package:
 
-width
+```bash
+npm publish
+```
 
-string or number
+✅ Done! Your updates are now live on [npm](https://www.npmjs.com/package/react-floatbot).
 
-28rem
+---
 
-The width of the chatbot window.
+##  Contributing
 
-height
+Pull requests and issues are welcome!
 
-string or number
+- Fork the repository
+- Create a new branch for your feature/fix
+- Submit a pull request with a clear description
 
-500px
+If you're fixing a bug or adding a feature, consider opening an issue first to discuss it.
 
-The height of the chatbot window.
+---
 
-isOpenOnLoad
+## 📄 License
 
-boolean
-
-false
-
-If true, the chatbot will be open by default when the page loads.
-
-theme
-
-object
-
-{}
-
-An object to customize the colors of the chatbot. See the Theme Object section below for details.
-
-The theme Object
-You can pass a theme object to easily change the chatbot's color scheme.
-
-Key
-
-Type
-
-Default
-
-Description
-
-primaryColor
-
-string
-
-#4a80ff
-
-The main accent color for buttons, icons, etc.
-
-userBubbleColor
-
-string
-
-#4a80ff
-
-The background color of the user's message bubbles.
-
-botBubbleColor
-
-string
-
-#2c2c2c
-
-The background color of the bot's message bubbles.
-
-backgroundColor
-
-string
-
-#1a1a1a
-
-The main background color of the chat window.
-
-Theme Example:
-<FloatingChatbot
-  apiKey={apiKey}
-  theme={{
-    primaryColor: '#ff7a59',
-    userBubbleColor: '#ff7a59',
-    botBubbleColor: '#3d3d3d',
-    backgroundColor: '#262626',
-  }}
-/>
+MIT © [Goutam Kumar Nayak](https://github.com/Goutam-04)
