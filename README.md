@@ -4,7 +4,7 @@
 
 
 **react-floatbot,** a react floating AI chatbot component, a sleek, customizable, and easy-to-integrate React component for adding a floating AI-powered chatbot to your website. Built with React and free Google Gemini API, it provides a modern, dark-themed interface that can be easily restyled to match your brand. 
-![Chatbot Demo](https://private-user-images.githubusercontent.com/126573065/474160054-9a303024-4bfd-47f7-b0e8-0b522ef0a853.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTQzMzExNzUsIm5iZiI6MTc1NDMzMDg3NSwicGF0aCI6Ii8xMjY1NzMwNjUvNDc0MTYwMDU0LTlhMzAzMDI0LTRiZmQtNDdmNy1iMGU4LTBiNTIyZWYwYTg1My5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwODA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDgwNFQxODA3NTVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yMjY0ZWQxNWQ4YzExZjUzM2Y4MzU5NjEzNjUxNzQ4ZDc5NDk4NWQ0OGI5ZTBmZTY5ODA0NjIyYTdlM2E5M2M2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.4KBssID-hhBe68KJ5iDmfnPiiFoZKzGqLVXQ6WG3X6Q)
+![Chatbot Demo](https://github.com/user-attachments/assets/38300ccf-bccc-4ff6-b82d-639d85e01d41)
 
 ## Installation
 
