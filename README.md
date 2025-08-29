@@ -73,6 +73,10 @@ You can override the default settings by passing additional props. For a full li
 	      headerText="Ask Gemini"
 	      placeholderText="Type your question here..."
 	      isOpenOnLoad={false}
+		  chatbotIcon={<MyCustomChatIcon />}
+    	  sendIcon={<MyCustomSendIcon />}
+		  closeIcon={<DefaultCloseIcon />}
+  		  copyIcon ={<DefaultCopyIcon />}
     />
 ```
 ### 📌 Customization (Props)
@@ -90,6 +94,10 @@ You can override the default settings by passing additional props. For a full li
 | `headerText`      | `string`                                                             | `botName`                                                        | Custom text to display in the header. |
 | `placeholderText` | `string`                                                             | `"Ask me anything..."`                                           | Placeholder shown in the message input area. |
 | `isOpenOnLoad`    | `boolean`                                                            | `false`                                                          | Whether the chatbot should open by default on page load. |
+| `chatbotIcon`     | `React Component`                                                    | `DefaultChatbotIcon`                                             | Custom React component to use for the main chat icon. |
+| `sendIcon`        | `React Component`                                                     | `DefaultSendIcon`                                                | Custom React component for the send message button. |
+| `closeIcon`       | `React Component`                                                     | `DefaultCloseIcon`                                               | Custom React component for the close chat button. |
+| `copyIcon`        | `React Component`                                                    | `DefaultCopyIcon`                                                | Custom React component for the copy code button. |
 
 ---
 
