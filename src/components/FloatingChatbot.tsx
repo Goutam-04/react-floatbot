@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 import { GoogleGenerativeAI, GenerativeModel } from "@google/generative-ai";
 import ReactMarkdown from 'react-markdown';
 import './FloatingChatbot.css';
-import { ChatbotIcon as DefaultChatbotIcon, SendIcon as DefaultSendIcon, CloseIcon as DefaultCloseIcon, CopyIcon as DefaultCopyIcon } from "./Icons";
-
+import { ChatbotIcon as DefaultChatbotIcon, BotAvatarIcon as DefaultBotAvatar, SendIcon as DefaultSendIcon, CloseIcon as DefaultCloseIcon, CopyIcon as DefaultCopyIcon } from "./Icons";
 // types
 interface Message {
   text: string;
@@ -29,6 +28,7 @@ interface FloatingChatbotProps {
   headerText?: string;
   placeholderText?: string;
   isOpenOnLoad?: boolean;
+  botAvatar?: React.ReactNode; 
   chatbotIcon?: React.ReactNode;
   sendIcon?: React.ReactNode;
   closeIcon?: React.ReactNode;
@@ -37,7 +37,7 @@ interface FloatingChatbotProps {
 
 // Custom hook to autosize the textarea
 const useAutosizeTextArea = (
-  textAreaRef: React.RefObject<HTMLTextAreaElement>,
+  textAreaRef: React.RefObject<HTMLTextAreaElement | null>, // Allow null
   value: string
 ) => {
   useEffect(() => {
@@ -54,17 +54,18 @@ const useAutosizeTextArea = (
 // ----- MAIN COMPONENT ----- //
 export default function FloatingChatbot({
   apiKey,
-  modelName = "gemini-1.5-flash",
-  initialMessage = "Hello! How can I assist you with your code today?",
+  modelName = "gemini-2.0-flash",
+  initialMessage = "Hello! How can I help you today?",
   botName = "AI Assistant",
   position = "bottom-right",
   theme = {},
   width,
   height,
-  headerText,
+  headerText = "AI Assistant",
   placeholderText = "Ask me anything...",
   isOpenOnLoad = false,
-  chatbotIcon: ChatbotIcon = <DefaultChatbotIcon/>,
+  botAvatar = <DefaultBotAvatar />,
+  chatbotIcon: ChatbotIcon = <DefaultChatbotIcon />,
   sendIcon: SendIcon = <DefaultSendIcon />,
   closeIcon: CloseIcon = <DefaultCloseIcon />,
   copyIcon: CopyIcon = <DefaultCopyIcon />,
@@ -149,7 +150,9 @@ export default function FloatingChatbot({
       <div className={`floating-chatbot ${isOpen ? 'open' : ''}`}>
         <div className="chatbot-header">
           <div className="header-info">
-            {ChatbotIcon}
+            <div className="avatar-container">
+              {botAvatar }
+            </div>
             <div className="header-text">
                 <h3>{headerText || botName}</h3>
                 <p>Online</p>
@@ -163,7 +166,6 @@ export default function FloatingChatbot({
         <div className="chatbot-messages-container" aria-live="polite">
           {messages.map((msg, index) => (
             <div key={index} className={`message-wrapper ${msg.sender}`}>
-              {msg.sender === 'bot' && ChatbotIcon}
               <div className={`message-bubble ${msg.sender}`}>
                 <ReactMarkdown
                   components={{
@@ -179,7 +181,7 @@ export default function FloatingChatbot({
                             </div>
                         );
                     },
-                    code({ node, inline, className, children, ...props }) {
+                    code({ node, inline, className, children, ...props }: {inline?: boolean, node?: any, className?: any, children?: any}) {
                       return !inline ? (
                         <code className={className} {...props}>
                           {children}
@@ -199,7 +201,6 @@ export default function FloatingChatbot({
           ))}
           {isLoading && (
             <div className="message-wrapper bot">
-              {ChatbotIcon}
               <div className="message-bubble bot typing-indicator">
                 <div className="dot"></div>
                 <div className="dot"></div>
