@@ -35,12 +35,14 @@ You can get a free Gemini API key from Google AI Studio.
 ### Example  
 ```jsx  
 import React from "react";  
-import FloatingChatbot from "react-floatbot";  
+import FloatingChatbot from "react-floatbot";
+import "react-floatbot/dist/index.css"  // add this css file also  
 
-const App = () => {  
-	<FloatingChatbot  
-		apiKey={ your_gemini_api_key }  
-	/>  
+const App = () => {
+	return(  
+		<FloatingChatbot  
+			apiKey={ your_gemini_api_key }  
+		/>  
 	);  
 };    
 export default App;  
